@@ -1,0 +1,21 @@
+version: '3'
+
+services:
+  lldb-playground:
+    build:
+      context: .
+    security_opt:
+      - seccomp:unconfined
+    cap_add:
+      - SYS_PTRACE
+    volumes:
+      - lldb-src:/playground/src
+      - ./scratch:/playground/src/scratch
+      - /Volumes/mnt/shagman@/core_dumps/:/dumps
+      - lldb-playground-extensions:/root/.vscode-server/extensions
+      - lldb-playground-extensions-insiders:/root/.vscode-server-insiders/extensions
+
+volumes:
+  lldb-src:
+  lldb-playground-extensions:
+  lldb-playground-extensions-insiders:
